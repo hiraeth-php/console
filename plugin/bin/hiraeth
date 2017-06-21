@@ -22,5 +22,5 @@ exit($hiraeth->run(function(Hiraeth\Configuration $config, Hiraeth\Broker $broke
 		}
 	}
 
-	exit($console->run());
+	return $console->run();
 }));
