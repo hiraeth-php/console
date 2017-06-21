@@ -1,0 +1,24 @@
+{
+    "name": "hiraeth/console",
+    "description": "Console commands for the Hiraeth Nano-Framework",
+    "license": "MIT",
+    "authors": [
+        {
+            "name":  "Matthew J. Sahagian",
+            "email": "msahagian@dotink.org",
+            "role":  "Lead Architect / Developer"
+        }
+    ],
+    "require": {
+        "symfony/console": "^3.3"
+    },
+    "type": "opus-package",
+    "extra": {
+        "opus": {
+            "hiraeth/app": {
+                "plugin/bin": "",
+                "plugin/config": ""
+            }
+        }
+    }
+}
