@@ -15,7 +15,7 @@ for (
 $loader  = require $root_path . '/vendor/autoload.php';
 $hiraeth = new Hiraeth\Application($root_path);
 
-exit($hiraeth->run(function(Console $console) {
+exit($hiraeth->exec(function(Console $console) {
 	foreach ($this->getConfig('*', 'console.commands', array()) as $config => $commands) {
 		foreach ($commands as $command) {
 			$console->add($this->get($command));
