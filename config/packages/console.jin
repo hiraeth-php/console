@@ -35,9 +35,16 @@
 
 [console]
 
-; Add symfony/console compatible commands to the list below and they will be executable via the `bin/hiraeth`
-; application runner.
+	; Add symfony/console compatible commands to the list below and they will be executable via the `bin/hiraeth`
+	; application runner.
 
-commands = [
-;	"Acme\\Foo\\BarCommand"
-]
+	commands = [
+	;	"Acme\\Foo\\BarCommand"
+	]
+
+	helpers = {
+		"process": "Symfony\Component\Console\Helper\ProcessHelper",
+		"question": "Symfony\Component\Console\Helper\QuestionHelper",
+		"formatter": "Symfony\Component\Console\Helper\FormatterHelper",
+		"debug_formatter": "Symfony\Component\Console\Helper\DebugFormatterHelper"
+	}
