@@ -1,6 +1,6 @@
 <?php
 
-use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Application as Console;
 
 //
 // Track backwards until we discover our composer.json.
@@ -13,12 +13,12 @@ for (
 );
 
 $loader  = require $root_path . '/vendor/autoload.php';
-$hiraeth = new Hiraeth\Application($root_path, $loader);
+$hiraeth = new Hiraeth\Application($root_path);
 
-exit($hiraeth->run(function(Hiraeth\Configuration $config, Hiraeth\Broker $broker, Application $console) {
-	foreach ($config->get('*', 'console.commands', array()) as $config => $commands) {
+exit($hiraeth->run(function(Console $console) {
+	foreach ($this->getConfig('*', 'console.commands', array()) as $config => $commands) {
 		foreach ($commands as $command) {
-			$console->add($broker->make($command));
+			$console->add($this->get($command));
 		}
 	}
 
