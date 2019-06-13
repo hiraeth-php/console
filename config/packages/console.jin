@@ -18,7 +18,7 @@
 	;
 
 	delegates = [
-
+		"Hiraeth\Console\ConsoleDelegate"
 	]
 
 	;

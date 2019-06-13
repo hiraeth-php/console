@@ -1,8 +1,5 @@
 <?php
 
-use Symfony\Component\Console\Application as Console;
-use Symfony\Component\Console\Helper\HelperSet;
-
 //
 // Track backwards until we discover our composer.json.
 //
@@ -16,27 +13,6 @@ for (
 $loader  = require $root_path . '/vendor/autoload.php';
 $hiraeth = new Hiraeth\Application($root_path);
 
-exit($hiraeth->exec(function(Console $console) {
-	$helper_set = $this->get(HelperSet::class);
-
-	foreach ($this->getConfig('*', 'console.helpers', array()) as $collection => $helpers) {
-		foreach ($helpers as $alias => $helper) {
-			$helper_set->set($this->get($helper), $alias);
-		}
-	}
-
-	$console->setHelperSet($helper_set);
-
-	//
-	// NOTE: The order above matters, helper set must be set before adding commands or else the
-	// commans will not get them.
-	///
-
-	foreach ($this->getConfig('*', 'console.commands', array()) as $collection => $commands) {
-		foreach ($commands as $command) {
-			$console->add($this->get($command));
-		}
-	}
-
+exit($hiraeth->exec(function(Symfony\Component\Console\Application $console) {
 	return $console->run();
 }));
