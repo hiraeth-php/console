@@ -5,6 +5,7 @@ namespace Hiraeth\Console;
 use Hiraeth;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Helper\HelperSet;
+use Symfony\Component\Console\CommandLoader\ContainerCommandLoader;
 
 /**
  * Delegates are responsible for constructing dependencies for the dependency injector.
@@ -38,6 +39,7 @@ class ConsoleDelegate implements Hiraeth\Delegate
 	{
 		$console    = new Application();
 		$helper_set = new HelperSet();
+		$cmd_list   = array();
 
 		foreach ($app->getConfig('*', 'console.helpers', array()) as $collection => $helpers) {
 			foreach ($helpers as $alias => $helper) {
@@ -45,18 +47,23 @@ class ConsoleDelegate implements Hiraeth\Delegate
 			}
 		}
 
-		$console->setHelperSet($helper_set);
-
-		//
-		// NOTE: The order above matters, helper set must be set before adding commands or else the
-		// commans will not get them.
-		///
-
 		foreach ($app->getConfig('*', 'console.commands', array()) as $collection => $commands) {
-			foreach ($commands as $command) {
-				$console->add($app->get($command));
+			foreach ($commands as $name => $command) {
+				if (is_numeric($name)) {
+					$cmd_list[$command::getDefaultName()] = $command;
+				} else {
+					$cmd_list[$name] = $command;
+				}
 			}
 		}
+
+		//
+		// NOTE: The order below matters, helper set must be set before adding commands or else the
+		// commands will not get them.
+		//
+
+		$console->setHelperSet($helper_set);
+		$console->setCommandLoader(new ContainerCommandLoader($app, $cmd_list));
 
 		return $console;
 	}
