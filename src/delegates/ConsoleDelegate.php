@@ -43,11 +43,11 @@ class ConsoleDelegate implements Hiraeth\Delegate
 		$commands   = $app->getConfig('*', 'console.commands', array());
 		$cmd_list   = array();
 
-		foreach (array_replace(...array_values($helpers)) as $alias => $helper) {
+		foreach (array_merge(...array_values($helpers)) as $alias => $helper) {
 			$helper_set->set($app->get($helper), $alias);
 		}
 
-		foreach (array_replace(...array_values($commands)) as $name => $command) {
+		foreach (array_merge(...array_values($commands)) as $name => $command) {
 			if (is_numeric($name)) {
 				$cmd_list[$command::getDefaultName()] = $command;
 			} else {
