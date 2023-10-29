@@ -15,7 +15,7 @@
         "classmap": ["src/"]
     },
     "require": {
-        "hiraeth/app": "^2.0",
+        "hiraeth/app": "^3.0",
         "symfony/console": "^5.0"
     },
     "require-dev": {
