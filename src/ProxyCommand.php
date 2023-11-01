@@ -52,7 +52,7 @@ abstract class ProxyCommand extends Command
 			)
 		);
 
-		$proxy
+		$this
 			->setDescription($proxy->getDescription())
 			->setHelp($proxy->getHelp())
 		;
