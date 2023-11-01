@@ -98,7 +98,7 @@ abstract class ProxyCommand extends Command
 				$argument_mode = $argument_mode + InputArgument::OPTIONAL;
 			}
 
-			if ($option->isArray()) {
+			if ($argument->isArray()) {
 				$argument_mode = $argument_mode + InputArgument::IS_ARRAY;
 			}
 
