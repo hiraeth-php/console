@@ -38,12 +38,13 @@ abstract class ProxyCommand extends Command
 		parent::__construct();
 	}
 
+
 	/**
 	 *
 	 */
 	protected function configure(): void
 	{
-		$proxy  = new static::$proxy();
+		$proxy  = $this->proxy();
 		$merges = array_diff_key(
 			$proxy->getDefinition()->getOptions(),
 			array_combine(
@@ -117,10 +118,19 @@ abstract class ProxyCommand extends Command
 	/**
 	 *
 	 */
-	protected function passthru(InputInterface $input): InputInterface
+	protected function proxy()
+	{
+		return new static::$proxy();
+	}
+
+
+	/**
+	 *
+	 */
+	protected function passthru(InputInterface $input, array $parameters = array()): InputInterface
 	{
 
-		$parameters    = array();
+		$parameters = $parameters;
 
 		foreach ($input->getOptions() as $option => $value) {
 			if (in_array($option, static::$excludePassthruOptions)) {
