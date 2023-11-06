@@ -118,14 +118,14 @@ abstract class ProxyCommand extends Command
 	/**
 	 *
 	 */
-	protected function proxy()
+	protected function proxy(): Command
 	{
 		return new static::$proxy();
 	}
 
 
 	/**
-	 *
+	 * @param array<string, string> $parameters The additional options/arguments to pass
 	 */
 	protected function passthru(InputInterface $input, array $parameters = array()): InputInterface
 	{
