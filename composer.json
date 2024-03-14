@@ -10,6 +10,7 @@
         }
     ],
     "require": {
+        "hiraeth/app": "^1.0",
         "symfony/console": "^3.3"
     },
     "type": "opus-package",
