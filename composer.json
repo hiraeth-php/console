@@ -33,7 +33,7 @@
     "extra": {
         "opus": {
             "hiraeth/app": {
-                "bin": "",
+                "hiraeth": "bin",
                 "config": ""
             }
         }
